@@ -1,0 +1,13 @@
+body {
+ margin: 0px;
+ padding: 0px;
+
+}
+.centralizar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 40vh;
+    padding-left: 70vh;
+}
