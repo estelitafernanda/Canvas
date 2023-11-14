@@ -22,7 +22,7 @@ function animate(){
     context.fillStyle = 'black';
     context.fillRect(0, 0, canvas.width, canvas.height)
 
-    bonequinha.draw(); 
+    bonequinha.update(); 
     let delta = (performance.now() - prevTime) / 100; 
     let fps = 1 / delta; 
 
