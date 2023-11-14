@@ -1,1 +1,17 @@
-
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    height: 70%;
+    width: 100%;
+}
+canvas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000;
+    height: 70vh;
+    width: 70vh;
+    margin: 10vh;
+}
