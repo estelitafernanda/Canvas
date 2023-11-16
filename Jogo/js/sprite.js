@@ -116,7 +116,7 @@ class Sprite {
         this.draw()
         if (keys.a.pressed || keys.d.pressed || keys.w.pressed) {
           this.animate();
-      }
+        }
     }
 }
 
@@ -141,45 +141,38 @@ class Fighter extends Sprite{
     }
 
     gravity (){
-        if (Math.ceil(this.position.y + this.height - floorHeight) >= canvas.height){
-          this.onGround = true
-        }else {
-          this.onGround = false
-        }
+      this.onGround = this.position.y + this.height >= canvas.height - floorHeight;
 
-        if (this.position.y + this.height > canvas.height - floorHeight){
-            this.position.y = canvas.height - this.height - floorHeight
-            this.velocity.y = 0
-        } else {
-            if (!this.onGround) this.velocity.y += gravity
-        }
+      if (this.onGround) {
+          this.position.y = canvas.height - this.height - floorHeight;
+          this.velocity.y = 0;
+      } else {
+          this.velocity.y += gravity;
+      }
 
-        this.position.x += this.velocity.x
-        this.position.y += this.velocity.y 
-
-    }
-
+      this.position.x += this.velocity.x;
+      this.position.y += this.velocity.y;
+  }
     update(){
       this.gravity()
       this.loadSprite()
       this.draw()
-      if (keys.a.pressed || keys.d.pressed || (keys.w.pressed && this.onGround)) {
-        this.animate()
+      if ((keys.a.pressed || keys.d.pressed) && this.onGround) {
+        this.animate();
+    }
+    }
+    jump(){
+      if (!this.onGround) {
+        this.velocity.y = -15; 
+        this.currentSpriteFrame = 10; 
       }
     }
-
-    jump(){
-        if (!this.onGround) return
-          this.velocity.y = -8.5
-    }
-
 }
-
 
 const bonequinha = new Fighter({
     position: {
       x: 10, 
-      y: 0
+      y: 20
     },
     velocity: {
       x: 0,
@@ -200,7 +193,7 @@ const bonequinha = new Fighter({
        jumping: {
           src: "/sprites/jumpboneca.png",
           totalSpriteFrames: 8,
-          framesPerSpriteFrame: 12
+          framesPerSpriteFrame: 20
        }
     }   
 })
