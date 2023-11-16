@@ -59,40 +59,38 @@ window.addEventListener("keyup", e =>{
             break;
     }
 })
-function handleControls(){
-    bonequinha.setSprite("idle")
-    
-    /*if (!bonequinha.onGround){
-        bonequinha.setSprite("jump")
-    }*/
+function handleControls() {
+    bonequinha.setSprite("idle");
 
-    movement()
+    movement();
 
-    function movement(){
-        bonequinha.velocity.x = 0
+    console.log('keys.w.pressed:', keys.w.pressed);
 
-        if (keys.a.pressed && ["a", "ArrowLeft"].includes(bonequinha.lastKeyPressed)){
-            bonequinha.velocity.x = -1.2 * 3.4
-            bonequinha.facing = "left"
+    function movement() {
+        bonequinha.velocity.x = 0;
 
-            if (!bonequinha.onGround) return
+        if (keys.a.pressed && ["a", "ArrowLeft"].includes(bonequinha.lastKeyPressed)) {
+            bonequinha.velocity.x = -1.2 * 3.4;
+            bonequinha.facing = "left";
 
-                bonequinha.setSprite("running")
+            if (!bonequinha.onGround) return;
+
+            bonequinha.setSprite("running");
         }
-        if (keys.d.pressed && ["d", "ArrowRight"].includes(bonequinha.lastKeyPressed)){
-            bonequinha.velocity.x = 1.2  * 3.4
-            bonequinha.facing = "right"
+        if (keys.d.pressed && ["d", "ArrowRight"].includes(bonequinha.lastKeyPressed)) {
+            bonequinha.velocity.x = 1.2 * 3.4;
+            bonequinha.facing = "right";
 
-            if (!bonequinha.onGround) return
-
-                bonequinha.setSprite("running")
+            if (!bonequinha.onGround) return;
+            bonequinha.setSprite("running");
         }
-        if (keys.w.pressed && !keys.w.hold){
-            bonequinha.jump()
-            keys.w.hold = true
-            bonequinha.setSprite("jumping")
+        if (keys.w.pressed && !keys.w.hold && bonequinha.onGround) {
+            console.log('Jumping!');
+            bonequinha.jump();
+            keys.w.hold = true;
+            bonequinha.setSprite("jumping");
         } else if (!keys.w.pressed) {
-            keys.w.hold = false; 
+            keys.w.hold = false;
         }
     }
 }
